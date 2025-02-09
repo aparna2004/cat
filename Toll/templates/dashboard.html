@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Toll Plaza</title>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById("balanceSection").style.display = "none";
+            document.getElementById("rechargeSection").style.display = "none";
+            document.getElementById("payTollSection").style.display = "none";
+            document.getElementById("transactionsSection").style.display = "none";
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h2>Welcome, {{ user.name }}</h2>
+
+    <h3>Choose an action:</h3>
+    <button onclick="showSection('balanceSection')">Check Balance</button>
+    <button onclick="showSection('rechargeSection')">Recharge</button>
+    <button onclick="showSection('payTollSection')">Pay Toll</button>
+    <button onclick="showSection('transactionsSection')">View Transactions</button>
+    <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+
+    <!-- Balance Section -->
+    <div id="balanceSection" style="display: none;">
+        <h3>Balance</h3>
+        <p>Your current balance is: ${{ user.balance }}</p>
+    </div>
+
+    <!-- Recharge Section -->
+    <div id="rechargeSection" style="display: none;">
+        <h3>Recharge Balance</h3>
+        <form method="POST" action="{{ url_for('recharge') }}">
+            <label>Amount:</label>
+            <input type="number" name="amount" step="0.01" required>
+            <button type="submit">Recharge</button>
+        </form>
+    </div>
+
+    <!-- Pay Toll Section -->
+    <div id="payTollSection" style="display: none;">
+        <h3>Pay Toll</h3>
+        <form method="POST" action="{{ url_for('pay_toll') }}">
+            <label>Amount:</label>
+            <input type="number" name="amount" step="0.01" required>
+            <button type="submit">Pay</button>
+        </form>
+    </div>
+
+    <!-- Transactions Section -->
+    <div id="transactionsSection" style="display: none;">
+        <h3>Transaction History</h3>
+        <ul>
+            {% for txn in transactions %}
+                <li>{{ txn.entry_time }} - Paid ${{ txn.amount }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

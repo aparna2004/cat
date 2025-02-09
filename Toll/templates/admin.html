@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Toll Plaza</title>
+</head>
+<body>
+    <h2>Admin Panel - Transactions</h2>
+
+    <!-- Filter Form -->
+    <form method="GET" action="{{ url_for('admin') }}">
+        <label>Filter by Date:</label>
+        <input type="date" name="date">
+        <button type="submit">Filter</button>
+    </form>
+
+    <h3>All Transactions</h3>
+    <table boarder="1" >
+        <tr>
+            <th>Transaction ID</th>
+            <th>Car Number</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        {% for txn in transactions %}
+        <tr>
+            <td>{{ txn.id }}</td>
+            <td>{{ txn.car_number }}</td>
+            <td>${{ txn.amount }}</td>
+            <td>{{ txn.date }}</td>
+            <td>{{ txn.entry_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
