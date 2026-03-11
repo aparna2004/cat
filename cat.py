@@ -24,6 +24,7 @@ def load_docs(file_path, text_col = None):
     raise ValueError("Only .csv and .txt files are supported")
 
 docs = load_docs(file_path, text_col)
+# docs = [ "information retrieval is the process of obtaining relevant documents", "information retrieval is the process of finding relevant documents", "information retrieval systems obtain relevant documents from large collections", "search engines use information retrieval algorithms to rank documents", "search engines use ranking algorithms to rank documents", "search engines rank web documents using retrieval algorithms", "query expansion improves search results by adding related terms", "query expansion techniques improve retrieval performance","query expansion methods add similar terms to the search query", "duplicate detection identifies similar documents on the web", "near duplicate detection finds similar web documents", "duplicate document detection improves search engine indexing", "machine learning models are used for image classification", "deep learning techniques are used in computer vision", "neural networks learn patterns from large datasets" ]
 
 stop_words = set(stopwords.words('english')); stemmer = PorterStemmer()
 
