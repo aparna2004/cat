@@ -1,3 +1,14 @@
+import os
+folder = "texts"  
+docs = []
+for file in os.listdir(folder):
+    if file.endswith(".txt"):
+        with open(os.path.join(folder, file), "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    docs.append(line)
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
